@@ -20,19 +20,7 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Color maleCardColor = inactiveCardColor;
-  Color femaleCardColor = inactiveCardColor;
-
-  // 1 = male, 2 = female
-  void updateColour(Gender selectedGender) {
-    if (selectedGender == Gender.male) {
-      femaleCardColor = inactiveCardColor;
-      maleCardColor = (maleCardColor == inactiveCardColor) ? activeCardColor : inactiveCardColor;
-    } else {
-      maleCardColor = inactiveCardColor;
-      femaleCardColor = (femaleCardColor == inactiveCardColor) ? activeCardColor : inactiveCardColor;
-    }
-  }
+  Gender selectedGender;
 
   @override
   Widget build(BuildContext context) {
@@ -49,11 +37,11 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        updateColour(Gender.male);
+                        selectedGender = Gender.male;
                       });
                     },
                     child: ReusableCard(
-                      color: maleCardColor,
+                      color: (selectedGender == Gender.male) ? activeCardColor : inactiveCardColor,
                       cardChild: IconContent(
                         label: "Male",
                         iconData: FontAwesomeIcons.mars,
@@ -65,11 +53,11 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        updateColour(Gender.female);
+                        selectedGender = Gender.female;
                       });
                     },
                     child: ReusableCard(
-                      color: femaleCardColor,
+                      color: (selectedGender == Gender.female) ? activeCardColor : inactiveCardColor,
                       cardChild: IconContent(
                           iconData: FontAwesomeIcons.venus, label: "Female"),
                     ),
