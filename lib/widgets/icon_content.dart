@@ -5,7 +5,6 @@ const TextStyle labelTextSyle = TextStyle(
   color: Color(0xFF8D8E98),
 );
 
-
 class IconContent extends StatelessWidget {
   final IconData iconData;
   final String label;
